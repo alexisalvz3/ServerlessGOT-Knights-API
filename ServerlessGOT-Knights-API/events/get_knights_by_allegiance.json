@@ -1,0 +1,17 @@
+{
+    "resource": "/knights",
+    "path": "/knights",
+    "httpMethod": "GET",
+    "queryStringParameters": {
+      "allegiance": "House Targaryen"
+    },
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "GOT API Client"
+    },
+    "requestContext": {
+      "httpMethod": "GET",
+      "path": "/prod/knights",
+      "resourcePath": "/knights"
+    }
+  }

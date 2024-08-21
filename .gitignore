@@ -1,1 +1,19 @@
+venv
+.txt
+# SAM build directory
+.aws-sam/
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
