@@ -1,6 +1,10 @@
 import json
+import boto3
+from botocore.exceptions import ClientError
 
-# import requests
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('GOTKnights')
+
 
 
 def get_knights(event, context):
@@ -35,52 +39,45 @@ def get_knights(event, context):
 
 
 def get_knights(event, context):
-    # Mock data for knights
-    knights = [
-        {
-            "name": "Ser Arthur Dayne",
-            "house": "Dayne",
-            "title": "Sword of the Morning",
-            "allegiance": "House Targaryen",
-            "sword": "Dawn"
-        },
-        {
-            "name": "Ser Barristan Selmy",
-            "house": "Selmy",
-            "title": "Barristan the Bold",
-            "allegiance": "House Targaryen",
-            "sword": "N/A"
-        },
-        {
-            "name": "Ser Jaime Lannister",
-            "house": "Lannister",
-            "title": "Kingslayer",
-            "allegiance": "House Lannister",
-            "sword": "Oathkeeper"
-        },
-        {
-            "name": "Ser Rodrik Cassel",
-            "house": "Cassel",
-            "title": "Master-at-Arms of Winterfell",
-            "allegiance": "House Stark",
-            "sword": "N/A"
+
+     # Extract query parameters
+    query_parameters = event.get('queryStringParameters', {})
+
+    # Check if there's an allegiance query parameter
+    allegiance = query_parameters.get('allegiance') if query_parameters else None
+
+    # error handling done in try-except block
+    try:
+        if allegiance:
+            # grabbing list of knights with allegiance to user-specified House from dynamoDB
+            response = table.scan(
+                FilterExpression=boto3.dynamodb.conditions.Attr('allegiance').eq(allegiance)
+            )            # case where no knights found with allegiance to user-specified House
+        else:
+            response = table.scan()
+        
+        # placing correct response into knights array
+        knights = response['Items']
+        
+        # case where we didnt find any knights with appropriate allegiance
+        if not knights:
+            return {
+                "statusCode": 404,
+                "body": json.dumps({"error": f"No knights found" + (f" with allegiance to {allegiance}" if allegiance else "")}), 
+                "headers": {"Content-Type": "application/json"}
+            }
+        # case where we succesfully return list of knights with correct allegiance
+        return {
+            "statusCode": 200,
+            "body": json.dumps(knights),
+            "headers": {"Content-Type": "application/json"}
         }
-    ]
-    
-    print(f"Event: {event}")  # Add this line
-    allegiance = event.get('queryStringParameters', {}).get('allegiance')
-
-    print(f"Allegiance: {allegiance}")  # Add this line
-
-    if allegiance:
-        knights = [knight for knight in knights if knight['allegiance'] == allegiance]
-    
-    print(f"Filtered knights: {knights}")  # Add this line
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps(knights),
-        "headers": {
-            "Content-Type": "application/json"
+        
+    except Exception as e:
+        # Log the error (in a real-world scenario, you'd use proper logging)
+        print(f"Error: {str(e)}")
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": "An error occurred while querying the database"}),
+            "headers": {"Content-Type": "application/json"}
         }
-    }

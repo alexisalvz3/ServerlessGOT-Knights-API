@@ -1,0 +1,14 @@
+{
+    "resource": "/knights",
+    "path": "/knights",
+    "httpMethod": "GET",
+    "headers": {
+      "Accept": "application/json",
+      "User-Agent": "GOT API Client"
+    },
+    "requestContext": {
+      "httpMethod": "GET",
+      "path": "/prod/knights",
+      "resourcePath": "/knights"
+    }
+  }
