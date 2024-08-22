@@ -73,6 +73,7 @@ Example usage:
 
 Get all knights:
   - GET [https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights](https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights)
+
 Get knights with allegiance to House Stark:
   - GET [https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark](https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark)
 ## Future Enhancements
