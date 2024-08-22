@@ -4,20 +4,24 @@ A serverless API built with AWS SAM, Lambda, and API Gateway to provide informat
 
 ## Project Description
 
-This API allows users to retrieve information about famous knights from the Game of Thrones universe. It uses serverless architecture to provide scalable and cost-effective access to knight data.
+This API allows users to retrieve information about famous knights from the Game of Thrones universe. It leverages serverless architecture to provide scalable and cost-effective access to knight data.
 
 ## Features
 
 - Get a list of all knights
-- Get knights by allegiance
-- Get a knight's personality (AI-generated)
+- Filter knights by allegiance
+- Error handling
+- Serverless architecture for automatic scaling and cost optimization
+- Get a knight's personality (AI-generated) (Future feature)
 
 ## Technologies Used
 
-- AWS SAM
+- AWS Serverless Application Model (SAM)
 - AWS Lambda
 - Amazon API Gateway
 - Amazon DynamoDB
+- Docker
+- Boto3 (AWS SDK for Python)
 - Python 3.12
 
 ## Project Structure
@@ -26,10 +30,9 @@ This API allows users to retrieve information about famous knights from the Game
 - `got_knights/app.py`: Main Lambda function code
 - `events/`: Contains JSON files for testing Lambda functions locally
 - `tests/`: (To be added) Unit tests for the application
+- `scripts/populate_table.py`: Script to populate DynamoDB with initial data
 
 ## Setup and Deployment
-
-(Instructions to be added)
 
 ### Prerequisites
 
@@ -41,21 +44,43 @@ This API allows users to retrieve information about famous knights from the Game
 ### Local Development
 
 1. Clone the repository: git clone https://github.com/your-username/ServerlessGOT-Knights-API.git
-cd ServerlessGOT-Knights-API
 
-2. Install dependencies: pip install -r requirements.txt
+2. cd ServerlessGOT-Knights-API 
 
-3. Run the function locally: sam local invoke GetKnightsFunction -e events/get_knights_by_allegiance.json
+3. Install dependencies: pip install -r requirements.txt
+
+4. Populate the DynamoDB table with initial data: 
+  - python scrypts/populate_table.py 
+
+5. sam build 
+
+6. Run the function locally: sam local invoke GetKnightsFunction -e events/get_knights_by_allegiance.json
 
 
 ### Deployment
 
-(To be added once deployment steps are finalized)
+- sam deploy --guided (for first time)
+- Follow the prompts to configure the deployment.
+- After successfully deploying, please take a look at the API Gateway endpoint URL from the output.
 
 ## API Endpoints
 
 - GET /knights: Retrieve all knights
-- GET /knights?allegiance={house}: Retrieve knights by allegiance
+- Query Parameters:
+  - `allegiance` (optional): Filter knights by allegiance; ex:   
+
+Example usage:
+
+Get all knights:
+  - GET https://your-api-id.execute-api.your-region.amazonaws.com/Prod/knights
+Get knights with allegiance to House Stark:
+  - GET https://your-api-id.execute-api.your-region.amazonaws.com/Prod/knights?allegiance=House%20Stark
+
+## Future Enhancements
+
+  - Implement AI-generated personality description for each knight
+  - Implement a frontend application to interact with the API
+  - Add authentication and authorization
 
 ## Contributing
 
