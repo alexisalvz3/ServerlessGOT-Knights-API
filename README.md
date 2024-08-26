@@ -12,6 +12,7 @@ This API allows users to retrieve information about famous knights from the Game
 - Filter knights by allegiance
 - Error handling
 - Serverless architecture for automatic scaling and cost optimization
+- Frontend UI 
 - Get a knight's personality (AI-generated) (Future feature)
 
 ## Technologies Used
@@ -23,6 +24,7 @@ This API allows users to retrieve information about famous knights from the Game
 - Docker
 - Boto3 (AWS SDK for Python)
 - Python 3.12
+- React
 
 ## Project Structure
 
@@ -62,6 +64,7 @@ This API allows users to retrieve information about famous knights from the Game
 - sam deploy --guided (for first time)
 - Follow the prompts to configure the deployment.
 - After successfully deploying, please take a look at the API Gateway endpoint URL from the output.
+- For frontend interaction: npm run dev (click on http://localhost:5173)
 
 ## API Endpoints
 
@@ -72,14 +75,13 @@ This API allows users to retrieve information about famous knights from the Game
 Example usage:
 
 Get all knights:
-  - GET [https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights](https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights)
+  - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights)
 
 Get knights with allegiance to House Stark:
-  - GET [https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark](https://6e6v1kud7d.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark)
+  - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark)
 ## Future Enhancements
 
   - Implement AI-generated personality description for each knight
-  - Implement a frontend application to interact with the API
   - Add authentication and authorization
 
 ## Contributing
