@@ -6,6 +6,11 @@ Description: >
   Sample SAM Template for ServerlessGOT-Knights-API
 
 Globals:
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'content-type'"
+      AllowOrigin: "'*'"
   Function:
     Timeout: 3
 
@@ -41,11 +46,22 @@ Resources:
           Properties:
             Path: /knights
             Method: get
+            RestApiId: !Ref GetKnightsApi
+
+  GetKnightsApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'http://localhost:5173'"
+        MaxAge: "'300'"
 
 Outputs:
-  GetKnightsAPI:
+  GetKnightsApi:
     Description: "API Gateway endpoint URL for Prod stage for Get Knights function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/knights/"
+    Value: !Sub "https://${GetKnightsApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/knights/"
   GetKnightsFunction:
     Description: "Get Knights Lambda Function ARN"
     Value: !GetAtt GetKnightsFunction.Arn

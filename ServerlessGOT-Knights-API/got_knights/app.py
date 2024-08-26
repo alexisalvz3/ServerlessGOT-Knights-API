@@ -69,8 +69,13 @@ def get_knights(event, context):
         # case where we succesfully return list of knights with correct allegiance
         return {
             "statusCode": 200,
-            "body": json.dumps(knights),
-            "headers": {"Content-Type": "application/json"}
+            "headers": {
+                
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "*", # Allow from anywhere 
+                "Access-Control-Allow-Methods": "GET" # Allow only GET request 
+            },
+            "body": json.dumps(knights)
         }
         
     except Exception as e:
