@@ -72,7 +72,7 @@ This API allows users to retrieve information about famous knights from the Game
 - Query Parameters:
   - `allegiance` (optional): Filter knights by allegiance; ex:   
 
-Example usage:
+Example usage (on Postman):
 
 Get all knights:
   - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights)
