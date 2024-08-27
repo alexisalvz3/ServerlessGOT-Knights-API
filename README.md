@@ -47,11 +47,15 @@ This API allows users to retrieve information about famous knights from the Game
 
 1. Clone the repository: git clone https://github.com/your-username/ServerlessGOT-Knights-API.git
 
-2. cd ServerlessGOT-Knights-API 
+2. cd ServerlessGOT-Knights-API
 
-3. Install dependencies: pip install -r requirements.txt
+3. create virtual environment:
+  - python3 -m venv venv
+  - source venv/bin/activate 
 
-4. Populate the DynamoDB table with initial data: 
+4. Install dependencies: pip install -r requirements.txt
+
+5. Populate the DynamoDB table with initial data: 
   - python scrypts/populate_table.py 
 
 5. sam build 
