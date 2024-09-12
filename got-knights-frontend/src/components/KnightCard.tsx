@@ -11,7 +11,12 @@ function KnightCard({ knight }: KnightCardProps) {
     <Card>
       <CardMedia
         component="img"
-        height="140"
+        sx={{
+          width: "100%",
+          height: 300, // set a fixed height
+          objectFit: "contain", // this will crop the image to fit while maintaining aspect ratio
+          backgroundColor: "#f0f0f0", // center the image within the container
+        }}
         image={knight.imageUrl}
         alt={knight.name}
       />

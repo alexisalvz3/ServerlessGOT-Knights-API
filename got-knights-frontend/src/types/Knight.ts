@@ -5,4 +5,5 @@ export interface Knight {
     allegiance: string;
     sword: string;
     imageUrl: string;
+    personality: string;
   }

@@ -31,7 +31,12 @@ function KnightPage() {
       <Card>
         <CardMedia
           component="img"
-          height="300"
+          sx={{
+            width: "100%",
+            height: 300,
+            objectFit: "contain",
+            backgroundColor: "#f0f0f0",
+          }}
           image={knight.imageUrl}
           alt={knight.name}
         />
@@ -45,6 +50,9 @@ function KnightPage() {
             Allegiance: {knight.allegiance}
           </Typography>
           <Typography variant="body1">Sword: {knight.sword}</Typography>
+          <Typography variant="body1">
+            Personality: {knight.personality}
+          </Typography>
         </CardContent>
       </Card>
     </Container>
