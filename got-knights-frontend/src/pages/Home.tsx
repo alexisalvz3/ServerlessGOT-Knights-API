@@ -1,8 +1,11 @@
+import { useState } from "react";
 import AllegianceSort from "../components/AllegianceSort";
 import KnightList from "../components/KnightList";
 import { Container, Typography } from "@mui/material";
+import { House } from "../types/House";
 
 function Home() {
+  const [filter, setFilter] = useState<House>();
   const headerStyle = {
     display: "flex",
     justifyContent: "space-between", // Adjusts the spacing between items
