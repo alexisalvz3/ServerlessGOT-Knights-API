@@ -2,7 +2,15 @@ import { getAllHouses } from "../services/api";
 import { useEffect, useState } from "react";
 import { House } from "../types/House";
 
-export default function AllegianceSort() {
+interface SortProps {
+  handleClick: (selectedHouse: House) => void;
+  selectedHouse?: House;
+}
+
+export default function AllegianceSort({
+  handleClick,
+  selectedHouse,
+}: SortProps) {
   const [houses, setHouses] = useState<House[]>([]);
 
   useEffect(() => {
@@ -30,7 +38,11 @@ export default function AllegianceSort() {
       <ul className="dropdown-menu">
         {houses.map((house) => (
           <li key={house.name}>
-            <a className="dropdown-item" href="#">
+            <a
+              onClick={() => handleClick(house)}
+              className="dropdown-item"
+              href="#"
+            >
               {house.name}
             </a>
           </li>
