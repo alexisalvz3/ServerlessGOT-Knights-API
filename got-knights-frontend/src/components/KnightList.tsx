@@ -1,19 +1,33 @@
 import { useState, useEffect } from "react";
-import { getKnights } from "../services/api";
+import { getKnights, sortByAllegiance } from "../services/api";
 import KnightCard from "./KnightCard";
 import { Knight } from "../types/Knight";
 import { Grid } from "@mui/material";
+import { House } from "../types/House";
 
-function KnightList() {
+interface HouseProp {
+  selectedHouse?: House;
+}
+
+function KnightList({ selectedHouse }: HouseProp) {
   const [knights, setKnights] = useState<Knight[]>([]);
 
   useEffect(() => {
     const fetchKnights = async () => {
-      const data = await getKnights();
-      setKnights(data);
+      try {
+        if (selectedHouse) {
+          const data = await sortByAllegiance(selectedHouse.name);
+          setKnights(data);
+        } else {
+          const data = await getKnights();
+          setKnights(data);
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching knights: ", error);
+      }
     };
     fetchKnights();
-  }, []);
+  }, [selectedHouse]);
 
   return (
     <Grid container spacing={3}>

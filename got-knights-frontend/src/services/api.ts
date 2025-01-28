@@ -35,7 +35,7 @@ export const getAllHouses = async (): Promise<House[]> => {
   }
 };
 
-export const sortByAllegiance = async (name: string): Promise<House []> => {
-  const response = await axios.get<House[]>(`${API_URL}?allegiance=${name}`);
+export const sortByAllegiance = async (name: string): Promise<Knight []> => {
+  const response = await axios.get<Knight[]>(`${API_URL}?allegiance=${name}`);
   return response.data;
 };

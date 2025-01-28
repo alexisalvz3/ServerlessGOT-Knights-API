@@ -30,7 +30,7 @@ function Home() {
         />
       </div>
 
-      <KnightList />
+      <KnightList selectedHouse={selectedHouse} />
     </Container>
   );
 }
