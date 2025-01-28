@@ -7,10 +7,7 @@ interface SortProps {
   selectedHouse?: House;
 }
 
-export default function AllegianceSort({
-  handleClick,
-  selectedHouse,
-}: SortProps) {
+export default function AllegianceSort({ handleClick }: SortProps) {
   const [houses, setHouses] = useState<House[]>([]);
 
   useEffect(() => {
