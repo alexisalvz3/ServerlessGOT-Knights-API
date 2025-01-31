@@ -5,40 +5,9 @@ from botocore.exceptions import ClientError
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('GOTKnights')
 
-
-
 def get_knights(event, context):
-    """Sample pure Lambda function
+    print("Full event received:", json.dumps(event, indent=2))
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
-
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
-
-    context: object, required
-        Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-
-def get_knights(event, context):
 
      # Extract query parameters
     query_parameters = event.get('queryStringParameters', {})
@@ -46,6 +15,8 @@ def get_knights(event, context):
     # Check if there's an allegiance query parameter
     name = query_parameters.get('name') if query_parameters else None
     allegiance = query_parameters.get('allegiance') if query_parameters else None
+    print("Filtering for allegiance:", allegiance)
+
 
     # error handling done in try-except block
     try:
@@ -55,10 +26,11 @@ def get_knights(event, context):
             knights = [response['Item']] if 'Item' in response else []
         elif allegiance:
             response = table.scan(
-                FilterExpression=boto3.dynamodb.conditions.Attr('allegiance').eq(allegiance)
+                FilterExpression=boto3.dynamodb.conditions.Attr('allegiance').contains(allegiance)
             )
             # placing correct response into knights array
             knights = response['Items']
+            print("All knights in DB: ", knights)
         else:
             response = table.scan()
             # placing correct response into knights array

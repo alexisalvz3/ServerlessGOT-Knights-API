@@ -20,8 +20,15 @@ export const getAllHouses = async (): Promise<House[]> => {
     const knights = await getKnights();
 
     // Extract allegiances and flatten into a single array
-    const allHouses: string[] = knights
-      .flatMap((knight) => knight.allegiance.split(",").map((house) => house.trim()));
+
+    knights.forEach((knight) => {
+      console.log(knight.name, knight.allegiance, Array.isArray(knight.allegiance));
+    });
+    
+    const allHouses: string[] = knights.flatMap((knight) =>
+      (Array.isArray(knight.allegiance) ? knight.allegiance : [knight.allegiance])
+      .map((house) => house?.trim()) // Ensure trimming works safely
+);
 
     // Remove duplicates and format as House[]
     const uniqueHouses: House[] = Array.from(new Set(allHouses)).map((house) => ({

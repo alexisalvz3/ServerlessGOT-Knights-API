@@ -7,10 +7,10 @@ import { House } from "../types/House";
 function Home() {
   const [selectedHouse, setSelectedHouse] = useState<House>();
 
-  function handleClick(house: House) {
+  const handleClick = (house: House) => {
     setSelectedHouse(house);
     console.log("Selected: ", house.name);
-  }
+  };
 
   const headerStyle = {
     display: "flex",

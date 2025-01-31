@@ -13,13 +13,16 @@ function KnightList({ selectedHouse }: HouseProp) {
   const [knights, setKnights] = useState<Knight[]>([]);
 
   useEffect(() => {
+    console.log("Fetching knights for house:", selectedHouse?.name);
     const fetchKnights = async () => {
       try {
         if (selectedHouse) {
           const data = await sortByAllegiance(selectedHouse.name);
+          console.log("Knights fetched:", data);
           setKnights(data);
         } else {
           const data = await getKnights();
+          console.log("All knights fetched:", data);
           setKnights(data);
         }
       } catch (error) {
