@@ -1,6 +1,7 @@
 import { getAllHouses } from "../services/api";
 import { useEffect, useState } from "react";
 import { House } from "../types/House";
+import { useNavigate } from "react-router-dom";
 
 interface SortProps {
   handleClick: (selectedHouse: House) => void;
@@ -8,7 +9,13 @@ interface SortProps {
 }
 
 export default function AllegianceSort({ handleClick }: SortProps) {
+  const navigate = useNavigate();
   const [houses, setHouses] = useState<House[]>([]);
+
+  const handleHouseClick = (house: House) => {
+    handleClick(house);
+    navigate(`/house/${encodeURIComponent(house.name)}`);
+  };
 
   useEffect(() => {
     const fetchHouses = async () => {
@@ -36,7 +43,7 @@ export default function AllegianceSort({ handleClick }: SortProps) {
         {houses.map((house) => (
           <li key={house.name}>
             <a
-              onClick={() => handleClick(house)}
+              onClick={() => handleHouseClick(house)}
               className="dropdown-item"
               href="#"
             >

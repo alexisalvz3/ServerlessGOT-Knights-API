@@ -9,6 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/house/:houseName" element={<Home />} />
         <Route path="/knight/:name" element={<KnightPage />} />
       </Routes>
     </Router>
