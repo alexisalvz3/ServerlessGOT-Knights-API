@@ -10,10 +10,10 @@ This API allows users to retrieve information about famous knights from the Game
 
 - Get a list of all knights
 - Filter knights by allegiance
+- AI-generated personality description for each knight
 - Error handling
 - Serverless architecture for automatic scaling and cost optimization
 - Frontend UI 
-- Get a knight's personality (AI-generated) (Future feature)
 
 ## Technologies Used
 
@@ -24,7 +24,7 @@ This API allows users to retrieve information about famous knights from the Game
 - Docker
 - Boto3 (AWS SDK for Python)
 - Python 3.12
-- React
+- React + Typescript
 
 ## Project Structure
 
@@ -85,7 +85,6 @@ Get knights with allegiance to House Stark:
   - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark)
 ## Future Enhancements
 
-  - Implement AI-generated personality description for each knight
   - Add authentication and authorization
 
 ## Contributing
