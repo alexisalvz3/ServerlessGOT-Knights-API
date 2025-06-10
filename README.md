@@ -86,6 +86,7 @@ Get knights with allegiance to House Stark:
 ## Future Enhancements
 
   - Add authentication and authorization
+  - Add GET endpoint to search individual knights
 
 ## Contributing
 
