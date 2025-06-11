@@ -47,7 +47,7 @@ function KnightPage() {
           <Typography variant="h6">House: {knight.house}</Typography>
           <Typography variant="body1">Title: {knight.title}</Typography>
           <Typography variant="body1">
-            Allegiance: {knight.allegiance}
+            Allegiance: {knight.allegiance.join(", ")}
           </Typography>
           <Typography variant="body1">Sword: {knight.sword}</Typography>
           <Typography variant="body1">
