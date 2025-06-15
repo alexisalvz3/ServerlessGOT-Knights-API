@@ -75,6 +75,7 @@ This API allows users to retrieve information about famous knights from the Game
 - GET /knights: Retrieve all knights
 - Query Parameters:
   - `allegiance` (optional): Filter knights by allegiance; ex:   
+  - `name` : Get individual knight by name
 
 Example usage (on Postman):
 
@@ -83,10 +84,12 @@ Get all knights:
 
 Get knights with allegiance to House Stark:
   - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?allegiance=House%20Stark)
+
+Get individual knight by name:
+  - GET [https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?name=Ser%20Barristan%20Selmy](https://717i9padz3.execute-api.us-west-1.amazonaws.com/Prod/knights?name=Ser%20Barristan%20Selmy)
 ## Future Enhancements
 
   - Add authentication and authorization
-  - Add GET endpoint to search individual knights
 
 ## Contributing
 
