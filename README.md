@@ -2,6 +2,8 @@
 
 A serverless API built with AWS SAM, Lambda, and API Gateway to provide information about knights from Game of Thrones.
 
+![Image](https://github.com/user-attachments/assets/73a35049-832d-4333-bf09-e9f3bf5b5b7b)
+
 ## Project Description
 
 This API allows users to retrieve information about famous knights from the Game of Thrones universe. It leverages serverless architecture to provide scalable and cost-effective access to knight data.
