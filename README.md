@@ -8,6 +8,33 @@ A serverless API built with AWS SAM, Lambda, and API Gateway to provide informat
 
 This API allows users to retrieve information about famous knights from the Game of Thrones universe. It leverages serverless architecture to provide scalable and cost-effective access to knight data.
 
+## 🧠 How This Application Uses AWS Lambda
+
+This application uses **AWS Lambda** as the core compute layer for its serverless backend. Lambda functions handle all incoming HTTP requests routed through **Amazon API Gateway** and execute logic to interact with the **DynamoDB** database.
+
+### ✅ Key Responsibilities of the Lambda Function:
+
+- **Routing and Business Logic:**  
+  The Lambda function processes incoming API Gateway events, parses query parameters (such as `name` or `allegiance`), and determines how to query the DynamoDB table accordingly.
+
+- **DynamoDB Integration:**  
+  It uses the AWS SDK for Python (**Boto3**) to perform `get_item()` or `scan()` operations on the `GOTKnights` table, depending on the request.
+
+- **Serverless Efficiency:**  
+  Because Lambda only runs in response to requests, the application remains highly **cost-effective** and **scalable**, automatically adjusting to any number of users without needing server management.
+
+- **API Responses:**  
+  The function formats and returns JSON responses with appropriate HTTP status codes and CORS headers, making it easy to integrate with frontend clients like the React + TypeScript app used in this project.
+
+### ⚙️ Example Event Flow:
+
+1. A user sends a GET request to `/knights?name=Ser%20Barristan%20Selmy`.
+2. API Gateway passes the request as an event to the Lambda function.
+3. Lambda uses Boto3 to look up `Ser Barristan Selmy` in DynamoDB.
+4. The result is returned as a JSON response to the user.
+
+
+
 ## Features
 
 - Get a list of all knights
